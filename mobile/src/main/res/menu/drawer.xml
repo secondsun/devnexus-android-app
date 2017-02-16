@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/all_presentations"
+        android:icon="@drawable/ic_drawer_presentations"
+        android:title="@string/all_presentations" />
+
+    <item
+        android:id="@+id/my_schedule"
+        android:icon="@drawable/ic_drawer_schedule"
+        android:title="@string/my_schedule" />
+
+    <item
+        android:id="@+id/scan_badge"
+        android:icon="@drawable/ic_drawer_qrcode"
+        android:title="@string/scan_badge" />
+
+    <item
+        android:id="@+id/about"
+        android:icon="@drawable/ic_drawer_about"
+        android:title="@string/about" />
+
+</menu>

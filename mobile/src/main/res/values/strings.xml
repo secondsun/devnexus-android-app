@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">devnexus-android-2</string>
+
+    <!-- Drawer -->
+    <string name="all_presentations">All Presentations</string>
+    <string name="my_schedule">My Schedule</string>
+    <string name="scan_badge">Scan Badge</string>
+    <string name="about">About</string>
+
+    <string name="about_description"><![CDATA[Create by <a href=\'http://twitter.com/summerspittman\'>Summers Pittman</a> and <a href=\'http://twitter.com/passos\'>Daniel Passos</a>]]></string>
 </resources>
