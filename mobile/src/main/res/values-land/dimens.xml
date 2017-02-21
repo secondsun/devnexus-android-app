@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Speaker -->
+    <dimen name="speaker_avatar_margin_top">20dp</dimen>
+    <dimen name="speaker_avatar_size">180dp</dimen>
+</resources>

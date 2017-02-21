@@ -6,15 +6,24 @@
         android:icon="@drawable/ic_drawer_presentations"
         android:title="@string/all_presentations" />
 
+    <!--
     <item
         android:id="@+id/my_schedule"
         android:icon="@drawable/ic_drawer_schedule"
         android:title="@string/my_schedule" />
+    -->
 
+    <item
+        android:id="@+id/speakers"
+        android:icon="@drawable/ic_drawer_speakers"
+        android:title="@string/speakers" />
+
+    <!--
     <item
         android:id="@+id/scan_badge"
         android:icon="@drawable/ic_drawer_qrcode"
         android:title="@string/scan_badge" />
+     -->
 
     <item
         android:id="@+id/sponsors"

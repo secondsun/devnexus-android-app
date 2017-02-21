@@ -1,6 +1,20 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <!-- Speakers -->
+    <dimen name="speakers_avatar_size">60dp</dimen>
+    <dimen name="speakers_name_margin_left">10dp</dimen>
+    <dimen name="speakers_name_text_size">18sp</dimen>
+    <!-- Speaker -->
+    <dimen name="speaker_avatar_size">200dp</dimen>
+    <dimen name="speaker_avatar_margin_top">10dp</dimen>
+    <dimen name="speaker_company_margin_top">10dp</dimen>
+    <dimen name="speaker_company_text_size">24sp</dimen>
+    <dimen name="speaker_social_margin_top">15dp</dimen>
+    <dimen name="speaker_bio_margin_top">10dp</dimen>
+    <dimen name="speaker_bio_margin_bottom">20dp</dimen>
+    <dimen name="speaker_bio_text_size">16sp</dimen>
+    <dimen name="speaker_bio_line_space">3dp</dimen>
     <!-- Sponsor -->
     <dimen name="sponsor_login_size">200dp</dimen>
 </resources>

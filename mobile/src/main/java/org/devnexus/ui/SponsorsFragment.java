@@ -27,6 +27,7 @@ import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.HeaderAdapter;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
+import com.mikepenz.materialize.MaterializeBuilder;
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
@@ -65,8 +66,6 @@ public class SponsorsFragment extends Fragment {
 
         ButterKnife.bind(this, view);
 
-//        new MaterializeBuilder().withActivity(this).build();
-
         FastAdapter<Sponsor> fastAdapter = new FastAdapter<>();
         fastAdapter.setHasStableIds(true);
         fastAdapter.withOnClickListener(new FastAdapter.OnClickListener<Sponsor>() {
@@ -74,8 +73,7 @@ public class SponsorsFragment extends Fragment {
             public boolean onClick(View v, IAdapter<Sponsor> adapter, Sponsor item, int position) {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(item.getLink()));
-                getContext().startActivity(intent);
-
+                startActivity(intent);
                 return false;
             }
         });

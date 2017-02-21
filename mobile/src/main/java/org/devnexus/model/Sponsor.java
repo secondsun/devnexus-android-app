@@ -1,15 +1,12 @@
 package org.devnexus.model;
 
-import android.graphics.drawable.ColorDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.annotations.SerializedName;
 import com.mikepenz.fastadapter.items.AbstractItem;
-import com.squareup.picasso.Picasso;
 
 import org.devnexus.R;
 

@@ -10,7 +10,7 @@ android {
         targetSdkVersion 25
 
         versionCode 1
-        versionName "1.0.1"
+        versionName "1.0.2"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -31,17 +31,17 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.4.0'
     compile 'com.squareup.okhttp3:okhttp:3.6.0'
     compile 'com.google.code.gson:gson:2.8.0'
+    compile "com.mikepenz:materialize:1.0.1@aar"
     compile('com.mikepenz:fastadapter:2.1.7@aar') {
         transitive = true
     }
     compile 'com.mikepenz:fastadapter-commons:2.1.0@aar'
     compile 'com.mikepenz:fastadapter-extensions:2.1.7@aar'
     compile 'com.timehop.stickyheadersrecyclerview:library:0.4.3@aar'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.squareup.picasso:picasso:2.5.2'
     compile('com.mikepenz:aboutlibraries:5.9.3@aar') {
         transitive = true
     }
+    compile 'com.github.bumptech.glide:glide:3.7.0'
 
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
 

@@ -12,6 +12,7 @@ import android.view.MenuItem;
 
 import com.mikepenz.aboutlibraries.LibsBuilder;
 import com.mikepenz.aboutlibraries.ui.LibsSupportFragment;
+import com.mikepenz.materialize.MaterializeBuilder;
 
 import org.devnexus.R;
 
@@ -38,6 +39,9 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         setSupportActionBar(toolbar);
+
+        new MaterializeBuilder().withActivity(this).build();
+
         setupNavigationMenu();
 
         displayHome();
@@ -62,12 +66,15 @@ public class MainActivity extends AppCompatActivity {
                     case R.id.all_presentations:
                         displayPresentations();
                         break;
-                    case R.id.my_schedule:
-                        displayMySchedule();
+//                    case R.id.my_schedule:
+//                        displayMySchedule();
+//                        break;
+                    case R.id.speakers:
+                        displaySpeakers();
                         break;
-                    case R.id.scan_badge:
-                        displayScanBadge();
-                        break;
+//                    case R.id.scan_badge:
+//                        displayScanBadge();
+//                        break;
                     case R.id.sponsors:
                         displaySponsors();
                         break;
@@ -96,13 +103,17 @@ public class MainActivity extends AppCompatActivity {
         display(new PresentationsFragment());
     }
 
-    private void displayMySchedule() {
-        display(new MyScheduleFragment());
+//    private void displayMySchedule() {
+//        display(new MyScheduleFragment());
+//    }
+
+    private void displaySpeakers() {
+        display(new SpeakersFragment());
     }
 
-    private void displayScanBadge() {
-        display(new ScanBadgeFragment());
-    }
+//    private void displayScanBadge() {
+//        display(new ScanBadgeFragment());
+//    }
 
     private void displaySponsors() {
         display(new SponsorsFragment());
