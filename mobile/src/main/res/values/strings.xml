@@ -17,6 +17,8 @@
     <string name="about_description"><![CDATA[Create by <a href=\'http://twitter.com/summerspittman\'>Summers Pittman</a> and <a href=\'http://twitter.com/passos\'>Daniel Passos</a>]]></string>
     
     <!-- Endpoints -->
+    <string name="speakers_json">"https://devnexus.com/api/speakers.json"</string>
     <string name="speaker_avatar">https://devnexus.com/s/speakers/%1$s.jpg</string>
-    <string name="sponsor_logo">https://devnexus.com/s/speakers/%1$s.jpg</string>
+    <string name="sponsors_json">"https://devnexus.com/api/sponsors.json"</string>
+    <string name="sponsor_logo">https://devnexus.com/s/sponsors/%1$s.jpg</string>
 </resources>

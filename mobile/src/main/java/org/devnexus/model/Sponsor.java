@@ -1,5 +1,6 @@
 package org.devnexus.model;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -78,8 +79,10 @@ public class Sponsor extends AbstractItem<Sponsor, Sponsor.ViewHolder> {
     public void bindView(ViewHolder holder, List<Object> payloads) {
         super.bindView(holder, payloads);
 
-        Glide.with(holder.itemView.getContext())
-                .load("https://devnexus.com/api/sponsors/" + id + ".jpg")
+        Context context = holder.itemView.getContext();
+
+        Glide.with(context)
+                .load(context.getString(R.string.sponsor_logo, String.valueOf(id)))
                 .into(holder.logo);
     }
 

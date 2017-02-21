@@ -191,7 +191,7 @@ public class SponsorsFragment extends Fragment {
 
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                    .url("https://devnexus.com/api/sponsors.json")
+                    .url(getActivity().getString(R.string.sponsors_json))
                     .build();
 
             List<Sponsor> sponsors = new ArrayList<>();
@@ -209,9 +209,6 @@ public class SponsorsFragment extends Fragment {
                     final Sponsor sponsor = new Gson().fromJson(jsonElement, Sponsor.class);
                     sponsors.add(sponsor);
                 }
-
-                Log.d("sponsordJsonArray", jsonData);
-
             } catch (IOException e) {
                 error = e;
                 Log.e(TAG, e.getMessage(), e);

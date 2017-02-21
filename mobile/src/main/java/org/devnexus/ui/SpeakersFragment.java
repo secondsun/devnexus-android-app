@@ -101,7 +101,7 @@ public class SpeakersFragment extends Fragment {
 
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder()
-                    .url("https://devnexus.com/api/speakers.jsonaa")
+                    .url(getActivity().getString(R.string.speakers_json))
                     .build();
 
             try {
