@@ -17,6 +17,11 @@
         android:title="@string/scan_badge" />
 
     <item
+        android:id="@+id/sponsors"
+        android:icon="@drawable/ic_drawer_sponsors"
+        android:title="@string/sponsors" />
+
+    <item
         android:id="@+id/about"
         android:icon="@drawable/ic_drawer_about"
         android:title="@string/about" />

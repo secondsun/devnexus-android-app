@@ -5,7 +5,11 @@
     <string name="all_presentations">All Presentations</string>
     <string name="my_schedule">My Schedule</string>
     <string name="scan_badge">Scan Badge</string>
+    <string name="sponsors">Sponsors</string>
     <string name="about">About</string>
 
+    <!-- About -->
     <string name="about_description"><![CDATA[Create by <a href=\'http://twitter.com/summerspittman\'>Summers Pittman</a> and <a href=\'http://twitter.com/passos\'>Daniel Passos</a>]]></string>
+    <string name="error_processing_request">An error occurred while processing your request</string>
+    <string name="try_again">Try again</string>
 </resources>

@@ -1,4 +1,4 @@
-package org.devnexus;
+package org.devnexus.ui;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,8 +11,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.mikepenz.aboutlibraries.LibsBuilder;
-import com.mikepenz.aboutlibraries.ui.LibsFragment;
 import com.mikepenz.aboutlibraries.ui.LibsSupportFragment;
+
+import org.devnexus.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         setupNavigationMenu();
+
         displayHome();
     }
 
@@ -65,6 +67,9 @@ public class MainActivity extends AppCompatActivity {
                         break;
                     case R.id.scan_badge:
                         displayScanBadge();
+                        break;
+                    case R.id.sponsors:
+                        displaySponsors();
                         break;
                     case R.id.about:
                         displayAbout();
@@ -97,6 +102,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void displayScanBadge() {
         display(new ScanBadgeFragment());
+    }
+
+    private void displaySponsors() {
+        display(new SponsorsFragment());
     }
 
     private void displayAbout() {
