@@ -2,7 +2,6 @@ package org.devnexus.ui;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -17,32 +16,25 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonParser;
 import com.mikepenz.fastadapter.AbstractAdapter;
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.IItem;
 import com.mikepenz.fastadapter.adapters.HeaderAdapter;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
-import com.mikepenz.materialize.MaterializeBuilder;
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
 import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
 import org.devnexus.R;
+import org.devnexus.handler.SponsorJsonHandler;
 import org.devnexus.model.Sponsor;
+import org.devnexus.service.Callback;
+import org.devnexus.service.RemoteDataAsyncTask;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class SponsorsFragment extends Fragment {
 
@@ -111,9 +103,50 @@ public class SponsorsFragment extends Fragment {
     }
 
     public void loadSponsorsFromServer() {
-        new SponsorsTask().execute();
+        new RemoteDataAsyncTask<Sponsor>()
+                .withUrl(getActivity().getString(R.string.sponsors_url))
+                .withHandler(new SponsorJsonHandler())
+                .withCallback(new Callback<Sponsor>() {
+                    @Override
+                    public void onPreExecute() {
+                        mProgressBar.setVisibility(View.VISIBLE);
+                        mRecyclerView.setVisibility(View.GONE);
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        mProgressBar.setVisibility(View.GONE);
+                        mRecyclerView.setVisibility(View.VISIBLE);
+                    }
+
+                    @Override
+                    public void onSuccess(List<Sponsor> data) {
+                        itemAdapter.set(data);
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+                        Log.e(TAG, e.getMessage(), e);
+
+                        Snackbar.make(
+                                mRecyclerView,
+                                R.string.error_processing_request,
+                                Snackbar.LENGTH_LONG
+                        ).setAction(R.string.try_again, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                loadSponsorsFromServer();
+                            }
+                        }).show();
+                    }
+                })
+                .execute();
     }
 
+    /**
+     * Cookbook to handler the header in FastAdapater
+     * For more details see: http://bit.ly/StickyHeaderAdapter
+     */
     private class StickyHeaderAdapter extends AbstractAdapter
             implements StickyRecyclerHeadersAdapter {
 
@@ -171,74 +204,6 @@ public class SponsorsFragment extends Fragment {
         @Override
         public int getGlobalPosition(int position) {
             return -1;
-        }
-
-    }
-
-    private class SponsorsTask extends AsyncTask<Void, Void, List<Sponsor>> {
-
-        private Exception error;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mProgressBar.setVisibility(View.VISIBLE);
-            mRecyclerView.setVisibility(View.GONE);
-        }
-
-        @Override
-        protected List<Sponsor> doInBackground(Void... voids) {
-
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url(getActivity().getString(R.string.sponsors_json))
-                    .build();
-
-            List<Sponsor> sponsors = new ArrayList<>();
-
-            try {
-                Response responses = client.newCall(request).execute();
-                String jsonData = responses.body().string();
-
-                JsonElement jsonRootElement = new JsonParser().parse(jsonData);
-                JsonArray sponsorsJsonArray = jsonRootElement.getAsJsonObject()
-                        .getAsJsonArray("sponsors");
-
-                for (int i = 0; i < sponsorsJsonArray.size(); i++) {
-                    final JsonElement jsonElement = sponsorsJsonArray.get(i);
-                    final Sponsor sponsor = new Gson().fromJson(jsonElement, Sponsor.class);
-                    sponsors.add(sponsor);
-                }
-            } catch (IOException e) {
-                error = e;
-                Log.e(TAG, e.getMessage(), e);
-            }
-
-            return sponsors;
-
-        }
-
-        @Override
-        protected void onPostExecute(List<Sponsor> sponsors) {
-            super.onPostExecute(sponsors);
-
-            mProgressBar.setVisibility(View.GONE);
-            mRecyclerView.setVisibility(View.VISIBLE);
-
-            if(error == null) {
-                itemAdapter.set(sponsors);
-            } else {
-                Snackbar.make(
-                        mRecyclerView,
-                        R.string.error_processing_request,
-                        Snackbar.LENGTH_LONG
-                ).setAction(R.string.try_again, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        loadSponsorsFromServer();
-                    }
-                }).show();
-            }
         }
 
     }

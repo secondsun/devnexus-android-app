@@ -152,7 +152,7 @@ public class Speaker extends AbstractItem<Speaker, Speaker.ViewHolder> implement
         holder.name.setText(getName());
 
         Glide.with(context)
-                .load(context.getString(R.string.speaker_avatar, String.valueOf(id)))
+                .load(context.getString(R.string.speaker_avatar_url, String.valueOf(id)))
                 .asBitmap()
                 .centerCrop()
                 .into(new BitmapImageViewTarget(holder.avatar) {

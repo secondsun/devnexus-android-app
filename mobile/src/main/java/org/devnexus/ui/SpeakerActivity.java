@@ -23,8 +23,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static java.security.AccessController.getContext;
-
 public class SpeakerActivity extends AppCompatActivity {
 
     @BindView(R.id.avatar)
@@ -68,11 +66,11 @@ public class SpeakerActivity extends AppCompatActivity {
         speaker = (Speaker) getIntent().getSerializableExtra(Speaker.class.getName());
 
         Glide.with(getApplicationContext())
-                .load(getString(R.string.speaker_avatar, String.valueOf(speaker.getId())))
+                .load(getString(R.string.speaker_avatar_url, String.valueOf(speaker.getId())))
                 .into(avatar);
 
         Glide.with(getApplicationContext())
-                .load(getString(R.string.speaker_avatar, String.valueOf(speaker.getId())))
+                .load(getString(R.string.speaker_avatar_url, String.valueOf(speaker.getId())))
                 .asBitmap()
                 .centerCrop()
                 .into(new BitmapImageViewTarget(avatar) {

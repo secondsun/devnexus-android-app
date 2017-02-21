@@ -1,7 +1,6 @@
 package org.devnexus.ui;
 
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -15,27 +14,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.mikepenz.fastadapter.FastAdapter;
 import com.mikepenz.fastadapter.IAdapter;
 import com.mikepenz.fastadapter.adapters.ItemAdapter;
 
 import org.devnexus.R;
+import org.devnexus.handler.SpeakerJsonHandler;
 import org.devnexus.model.Speaker;
+import org.devnexus.service.Callback;
+import org.devnexus.service.RemoteDataAsyncTask;
 
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class SpeakersFragment extends Fragment {
 
@@ -82,76 +74,44 @@ public class SpeakersFragment extends Fragment {
     }
 
     private void loadSpeakersFromServer() {
-        new SpeakersTask().execute();
-    }
-
-    private class SpeakersTask extends AsyncTask<Void, Void, List<Speaker>> {
-
-        private Exception error;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            mProgressBar.setVisibility(View.VISIBLE);
-            mRecyclerView.setVisibility(View.GONE);
-        }
-
-        @Override
-        protected List<Speaker> doInBackground(Void... voids) {
-
-            OkHttpClient client = new OkHttpClient();
-            Request request = new Request.Builder()
-                    .url(getActivity().getString(R.string.speakers_json))
-                    .build();
-
-            try {
-                Response responses = client.newCall(request).execute();
-                String jsonData = responses.body().string();
-
-                Type listType = new TypeToken<ArrayList<Speaker>>() {
-                }.getType();
-                return new Gson().fromJson(jsonData, listType);
-            } catch (IOException e) {
-                error = e;
-                Log.e(TAG, e.getMessage(), e);
-
-                return new ArrayList<>();
-            }
-
-        }
-
-        @Override
-        protected void onPostExecute(List<Speaker> speakers) {
-            super.onPostExecute(speakers);
-
-            mProgressBar.setVisibility(View.GONE);
-            mRecyclerView.setVisibility(View.VISIBLE);
-
-            if (error == null) {
-                Collections.sort(speakers, new Comparator<Speaker>() {
+        new RemoteDataAsyncTask<Speaker>()
+                .withUrl(getActivity().getString(R.string.speakers_url))
+                .withHandler(new SpeakerJsonHandler())
+                .withCallback(new Callback<Speaker>() {
                     @Override
-                    public int compare(Speaker speaker1, Speaker speaker2) {
-
-                        return speaker1.getName().compareTo(speaker2.getName());
+                    public void onPreExecute() {
+                        mProgressBar.setVisibility(View.VISIBLE);
+                        mRecyclerView.setVisibility(View.GONE);
                     }
-                });
 
-                itemAdapter.set(speakers);
-            } else {
-                Snackbar.make(
-                        mRecyclerView,
-                        R.string.error_processing_request,
-                        Snackbar.LENGTH_LONG
-                ).setAction(R.string.try_again, new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
-                        loadSpeakersFromServer();
+                    public void onFinish() {
+                        mProgressBar.setVisibility(View.GONE);
+                        mRecyclerView.setVisibility(View.VISIBLE);
                     }
-                }).show();
-            }
-        }
 
+                    @Override
+                    public void onSuccess(List<Speaker> data) {
+                        itemAdapter.set(data);
+                    }
+
+                    @Override
+                    public void onFailure(Exception e) {
+                        Log.e(TAG, e.getMessage(), e);
+
+                        Snackbar.make(
+                                mRecyclerView,
+                                R.string.error_processing_request,
+                                Snackbar.LENGTH_LONG
+                        ).setAction(R.string.try_again, new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                loadSpeakersFromServer();
+                            }
+                        }).show();
+                    }
+                })
+                .execute();
     }
-
 
 }
