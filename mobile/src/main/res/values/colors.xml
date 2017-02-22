@@ -11,4 +11,8 @@
     <color name="secondary_text">#757575</color>
     <color name="icons">#FFFFFF</color>
     <color name="divider">#BDBDBD</color>
+
+    <color name="tabIndicatorColor">#6c9c31</color>
+    <color name="tabSelectedTextColor">#6c9c31</color>
+    <color name="tabTextColor">#f6921e</color>
 </resources>

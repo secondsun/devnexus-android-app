@@ -40,7 +40,7 @@ public class SponsorsFragment extends Fragment {
 
     private static final String TAG = SponsorsFragment.class.getName();
 
-    private ItemAdapter itemAdapter;
+    private ItemAdapter<Sponsor> itemAdapter;
 
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
@@ -72,7 +72,7 @@ public class SponsorsFragment extends Fragment {
 
         StickyHeaderAdapter stickyHeaderAdapter = new StickyHeaderAdapter();
         HeaderAdapter headerAdapter = new HeaderAdapter();
-        itemAdapter = new ItemAdapter();
+        itemAdapter = new ItemAdapter<>();
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());

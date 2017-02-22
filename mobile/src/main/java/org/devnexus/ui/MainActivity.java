@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         setupNavigationMenu();
 
-        displayHome();
+        displayPresentations();
     }
 
     // -- Navigation ------------------------------------------------------------------------------
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void displayPresentations() {
-        display(new PresentationsFragment());
+        display(new ScheduleFragment());
     }
 
 //    private void displayMySchedule() {

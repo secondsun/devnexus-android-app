@@ -4,6 +4,6 @@ import java.io.IOException;
 
 abstract class DataService {
 
-    abstract String getData() throws IOException;
+    public abstract String getData() throws IOException;
 
 }

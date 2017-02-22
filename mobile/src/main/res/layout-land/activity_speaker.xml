@@ -25,7 +25,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:textSize="22sp"
+            android:layout_marginLeft="@dimen/toolbar_title_margin"
+            android:layout_marginStart="@dimen/toolbar_title_margin"
+            android:layout_marginRight="@dimen/toolbar_title_margin"
+            android:layout_marginEnd="@dimen/toolbar_title_margin"
+            android:textSize="@dimen/speaker_toolbar_title_text_size"
             android:textStyle="bold"
             tools:text="Daniel Passos" />
 

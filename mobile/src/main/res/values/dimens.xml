@@ -1,11 +1,38 @@
 <resources>
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="toolbar_title_margin">20dp</dimen>
+    <!-- Talks -->
+    <dimen name="talks_margim_top">10dp</dimen>
+    <dimen name="talks_margim_bottom">10dp</dimen>
+    <dimen name="talks_margim_left">5dp</dimen>
+    <dimen name="talks_margim_right">5dp</dimen>
+    <dimen name="talks_color_width">7dp</dimen>
+    <dimen name="talks_title_text_size">18sp</dimen>
+    <dimen name="talks_speaker_text_size">14sp</dimen>
+    <dimen name="talks_icon_size">12dp</dimen>
+    <dimen name="talks_icon_text_size">12sp</dimen>
+    <dimen name="talks_icon_text_margin_left">2dp</dimen>
+    <!-- Talk -->
+    <dimen name="talk_toolbar_title_text_size">14sp</dimen>
+    <dimen name="talk_title_text_size">22sp</dimen>
+    <dimen name="talk_title_margim_bottom">10sp</dimen>
+    <dimen name="talk_margim_top">@dimen/talks_margim_top</dimen>
+    <dimen name="talk_margim_bottom">@dimen/talks_margim_bottom</dimen>
+    <dimen name="talk_margim_left">15dp</dimen>
+    <dimen name="talk_margim_right">15dp</dimen>
+    <dimen name="talk_color_width">@dimen/talks_color_width</dimen>
+    <dimen name="talk_icon_size">@dimen/talks_icon_size</dimen>
+    <dimen name="talk_icon_text_size">@dimen/talks_icon_text_size</dimen>
+    <dimen name="talk_icon_text_margin_left">10dp</dimen>
+    <dimen name="talk_description_margim_top">5dp</dimen>
+    <dimen name="talk_description_margim_bottom">5dp</dimen>
     <!-- Speakers -->
     <dimen name="speakers_avatar_size">60dp</dimen>
     <dimen name="speakers_name_margin_left">10dp</dimen>
     <dimen name="speakers_name_text_size">18sp</dimen>
     <!-- Speaker -->
+    <dimen name="speaker_toolbar_title_text_size">22sp</dimen>
     <dimen name="speaker_avatar_size">200dp</dimen>
     <dimen name="speaker_avatar_margin_top">10dp</dimen>
     <dimen name="speaker_company_margin_top">10dp</dimen>

@@ -33,7 +33,7 @@ public class SpeakersFragment extends Fragment {
 
     private static final String TAG = SpeakersFragment.class.getName();
 
-    private ItemAdapter itemAdapter;
+    private ItemAdapter<Speaker> itemAdapter;
 
     @BindView(R.id.progress_bar)
     ProgressBar mProgressBar;
@@ -58,11 +58,11 @@ public class SpeakersFragment extends Fragment {
                 Intent intent = new Intent(getContext(), SpeakerActivity.class);
                 intent.putExtra(Speaker.class.getName(), item);
                 startActivity(intent);
-                return false;
+                return true;
             }
         });
 
-        itemAdapter = new ItemAdapter();
+        itemAdapter = new ItemAdapter<>();
 
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());

@@ -10,6 +10,9 @@ import org.devnexus.model.Sponsor;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Parse sponsor JSON
+ */
 public class SponsorJsonHandler extends JsonHandler<Sponsor> {
 
     @Override
