@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">devnexus-android-2</string>
+    <string name="app_name">DevNexus</string>
 
     <!-- Drawer -->
     <string name="all_presentations">All Presentations</string>
